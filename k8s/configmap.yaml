@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fiap-video-uploader-config
+  namespace: fiap-x
+data:
+  SPRING_APPLICATION_NAME: fiap-video-uploader
+  SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE: 200MB
+  SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE: 200MB
+  SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka.kafka.svc.cluster.local:9092
+  SPRING_KAFKA_CONSUMER_GROUP_ID: video-consumer-group
+  SPRING_KAFKA_CONSUMER_AUTO_OFFSET_RESET: earliest
+

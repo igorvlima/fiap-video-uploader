@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fiap-video-uploader
+  namespace: fiap-x
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fiap-video-uploader
+  template:
+    metadata:
+      labels:
+        app: fiap-video-uploader
+    spec:
+      containers:
+        - name: fiap-video-uploader
+          image: igorvlima/fiap-video-uploader:1.0.11
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: fiap-video-uploader-config
+            - secretRef:
+                name: aws-credentials
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
